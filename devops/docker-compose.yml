@@ -2,16 +2,26 @@ version: '1'
 
 services:
   elasticsearch:
-    build: elk/elasticsearch/
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.0
     container_name: elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - "9300:9300"
+    networks:
+      - esnet
 
   logstash:
-    build: elk/logstash/
+    image: docker.elastic.co/logstash/logstash:6.1.0
     container_name: logstash
     command: -f /etc/logstash/conf.d/
     volumes:
@@ -30,3 +40,10 @@ services:
       - "5601:5601"
     links:
       - elasticsearch
+
+volumes:
+  esdata1:
+    driver: local
+
+networks:
+  esnet:
