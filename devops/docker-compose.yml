@@ -1,4 +1,4 @@
-version: '1'
+version: '2.2'
 
 services:
   elasticsearch:
@@ -15,7 +15,7 @@ services:
     volumes:
       - esdata1:/usr/share/elasticsearch/data
     ports:
-      - 9200:9200
+      - "9200:9200"
       - "9300:9300"
     networks:
       - esnet

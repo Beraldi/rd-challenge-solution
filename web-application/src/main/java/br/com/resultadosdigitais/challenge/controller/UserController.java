@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -17,7 +18,7 @@ import java.util.UUID;
 /**
  * The type User controller.
  */
-@RestController
+@RestController("/user")
 public class UserController {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -32,14 +33,11 @@ public class UserController {
      * @param email the email
      * @return the user with id
      */
-    @RequestMapping("/user/{id}")
-    public ResponseEntity<User> setUserWithId(@PathVariable() final UUID id, @PathVariable() final String url, final String email) {
+    public ResponseEntity<User> setUserWithId(@RequestParam(value = "cid") final UUID id, @RequestParam(value = "url")  final String url, @RequestParam(value = "email") final String email) {
 
         final User user = new User(id, url, new Date(), emailValidator.isValid(email) ? email : "");
 
-        logger.info("user=[" + user.toString() + "]");
-
-        logger.info(String.format("id=[%s] url=[%s] date=[%s]", user.getId(), user.getUrl(), user.getDateTime()));
+        loggerInfo(user);
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -51,16 +49,19 @@ public class UserController {
      * @param email the email
      * @return the user
      */
-    @RequestMapping("/user")
-    public ResponseEntity<UUID> setUser(@PathVariable() final String url, final String email) {
+    public ResponseEntity<UUID> setUser(@RequestParam(value = "url")  final String url, @RequestParam(value = "email") final String email) {
 
-        final User user = new User(url, new Date(), email);
+        final User user = new User(url, new Date(), emailValidator.isValid(email) ? email : "");
 
-        logger.info("user=[" + user.toString() + "]");
-
-        logger.info(String.format("id=[%s] url=[%s] date=[%s] email=[%s]", user.getId(), user.getUrl(), user.getDateTime(), user.getEmail()));
+        loggerInfo(user);
 
         return new ResponseEntity<>(user.getId(), HttpStatus.OK);
+    }
+
+    private void loggerInfo(User user) {
+        logger.info("user=[" + user.toString() + "]");
+
+        logger.info(String.format("id=[%s] url=[%s] date=[%s]", user.getId(), user.getUrl(), user.getDateTime()));
     }
 
 }
