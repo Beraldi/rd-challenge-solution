@@ -15,21 +15,23 @@
         <Appender type="File" name="File" fileName="${filename}">
             <Layout type="PatternLayout" pattern="${defaultpattern}" />
         </Appender>
-        <!--<Socket name="socket" host="logstash" port="9999" reconnectionDelayMillis="5000">-->
-            <!--<Layout type="PatternLayout" pattern="${defaultpattern}" />-->
-        <!--</Socket>-->
+        <LogzioAppender name="Logzio">
+            <logzioToken>dwEELpLijRPvmvhwxmyCBBZYspioIkDW</logzioToken>
+            <logzioType>myAwesomeType</logzioType>
+        </LogzioAppender>
     </Appenders>
 
     <Loggers>
         <Logger name="br.com.resultadosdigitais" level="info" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="File"/>
-            <!--<AppenderRef ref="socket"/>-->
         </Logger>
         <Root level="warn">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="File"/>
-            <!--<AppenderRef ref="socket"/>-->
+        </Root>
+        <Root level="info">
+            <AppenderRef ref="Logzio"/>
         </Root>
     </Loggers>
 
