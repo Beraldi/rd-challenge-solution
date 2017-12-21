@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.resultadosdigitais</groupId>
-	<artifactId>challenge</artifactId>
+	<artifactId>rd-challenge-solution-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>challenge</name>
+	<name>rd-challenge-solution-app</name>
 	<description>Processo Seletivo da RD</description>
 
 	<parent>
@@ -151,6 +151,7 @@
             <artifactId>commons-validator</artifactId>
             <version>1.6</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.logz.log4j2/logzio-log4j2-appender -->
         <dependency>
             <groupId>io.logz.log4j2</groupId>
             <artifactId>logzio-log4j2-appender</artifactId>
@@ -174,6 +175,9 @@
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>2.0.2</version>
+                <configuration>
+                    <appName>rd-challenge-solution-app</appName>
+                </configuration>
             </plugin>
 		</plugins>
 	</build>
