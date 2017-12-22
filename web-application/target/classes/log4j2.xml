@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" strict="true" monitorInterval="30">
+
+    <Properties>
+        <Property name="filename">/home/beraldi/Desktop/spring-boot-example.log</Property>
+        <Property name="defaultpattern">logdate=(%d{ISO8601}) thread=(%thread)) level=(%level) loggerclass=(%logger{36}) message=(%msg)%n</Property>
+    </Properties>
+
+    <Filter type="ThresholdFilter" level="trace"/>
+
+    <Appenders>
+        <Appender type="Console" name="STDOUT">
+            <Layout type="PatternLayout" pattern="${defaultpattern}"/>
+        </Appender>
+        <Appender type="File" name="File" fileName="${filename}">
+            <Layout type="PatternLayout" pattern="${defaultpattern}" />
+        </Appender>
+        <!--<LogzioAppender name="Logzio">-->
+            <!--<logzioToken>dwEELpLijRPvmvhwxmyCBBZYspioIkDW</logzioToken>-->
+            <!--<logzioType>myAwesomeType</logzioType>-->
+        <!--</LogzioAppender>-->
+    </Appenders>
+
+    <Loggers>
+        <Logger name="br.com.resultadosdigitais" level="info" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Root level="warn">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Root>
+        <!--<Root level="info">-->
+            <!--<AppenderRef ref="Logzio"/>-->
+        <!--</Root>-->
+    </Loggers>
+
+</Configuration>
