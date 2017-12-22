@@ -20,7 +20,7 @@ public interface UserRepository  extends JpaRepository<User, Long> {
      * @param id the id
      * @return the collection
      */
-    @Query("Select u from User u where u.id = :id")
+    @Query("Select u from User u where u.id = :id  order by u.datetime desc")
     Collection<User> findByUserId(@Param("id") long id);
 
 }

@@ -6,11 +6,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * The type Default controller.
+ */
 @Controller
 public class DefaultController {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Home string.
+     *
+     * @return the string
+     */
     @RequestMapping("/")
     @ResponseBody
     String home() {

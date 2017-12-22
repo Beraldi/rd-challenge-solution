@@ -17,10 +17,10 @@ public interface CookieRepository extends JpaRepository<Cookie, Long> {
     /**
      * Find all by member id collection.
      *
-     * @param id the id
+     * @param uuid the uuid
      * @return the collection
      */
-    @Query("Select c from Cookie c where c.id = :id")
-    Collection<Cookie> findByCookieId(@Param("id") long id);
+    @Query("Select c from Cookie c where c.uuid = :uuid order by c.datetime desc")
+    Collection<Cookie> findByCookieId(@Param("uuid") String uuid);
 
 }

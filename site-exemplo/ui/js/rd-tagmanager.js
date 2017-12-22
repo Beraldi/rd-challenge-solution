@@ -34,7 +34,7 @@
 
     this.sync = function(_cid, _url, _email) {
       console.log("_cid, _url, _email", _cid, _url, _email);
-      var _src = DA_Endpoint + "/user/?cid=" + _cid + "&url=" + escape(_url);
+      var _src = DA_Endpoint + "/cookie/track/?cid=" + _cid + "&url=" + escape(_url);
       _this.setPixelImg(_src);
     }
 

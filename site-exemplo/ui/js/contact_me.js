@@ -30,7 +30,13 @@ $(function() {
         url: "http://localhost:3002/user/form",
         type: "POST",
         headers: {'Content-type': 'application/json'},
-        data: JSON.stringify({"id":null,"uuid":"00facece-c4b4-47b3-b87b-90a19666ae76","name":null,"email":"b@b.com","phone":123456,"message":"123456","url":"http://","datetime":null}),
+        data: JSON.stringify({
+          uuid: Cookies.get('br.com.resultadosdigitais.challenge'),
+          name: name,
+          phone: parseInt(phone),
+          email: email,
+          message: message
+        }),
         cache: false,
         success: function() {
           // Success message

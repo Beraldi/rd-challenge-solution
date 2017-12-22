@@ -21,7 +21,7 @@ public class CookieServiceBean implements CookieService {
     private CookieRepository cookieRepository;
 
     @Override
-    public Collection<Cookie> findByCookieId(long cookieId) {
+    public Collection<Cookie> findByCookieId(String cookieId) {
         return cookieRepository.findByCookieId(cookieId);
     }
 
@@ -41,7 +41,7 @@ public class CookieServiceBean implements CookieService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(String id) {
         cookieRepository.delete(this.findByCookieId(id));
     }
 }

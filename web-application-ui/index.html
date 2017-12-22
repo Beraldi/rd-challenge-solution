@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RD Challenge Solution - UI</title>
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    </head>
+    <body>
+
+        <div class="result"></div>
+        <h2>Nome | Email | Navegação</h2>
+        <ul class="users"></ul>
+        <h2>Páginas Navegadas</h2>
+        <h3>Página | Data</h3>
+        <ul class="cookies">Selecione um usuário acima</ul>
+
+        <script>
+            "use strict";
+
+            (function($) {
+
+                if (!String.prototype.format) {
+                  String.prototype.format = function() {
+                    var args = arguments;
+                    return this.replace(/{(\d+)}/g, function(match, number) {
+                      return typeof args[number] != 'undefined'
+                        ? args[number]
+                        : match
+                      ;
+                    });
+                  };
+                }
+
+                var showTrack = function(uuid){
+                    callRoutes("http://localhost:3002/cookie/" + uuid, function(data, status){
+                        console.log("data, status", data, status);
+                        $(".result").html("Ended.");
+                        $(".cookies").text("");
+                        $.each(data, function (name, value) {
+                           var p = value.url + " | " + new Date(value.datetime) + "<br />";
+                           $(".cookies").append(p);
+                           $("#{0}".format(value.id)).on('click', function(event) {
+                               event.preventDefault();
+                               showTrack(value.uuid);
+                           });
+                        });
+                    });
+                }
+
+                var callRoutes = function(uri, func){
+                    $.ajax({
+                        type: "GET",
+                        url: uri,
+                        success: function(data, status) {
+                            func(data, status);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log("jqXHR, textStatus, errorThrown", jqXHR, textStatus, errorThrown);
+                        },
+                        statusCode: {
+                            500: function() {
+                                $(".result").html("Error.");
+                            },
+                            200: function() {
+                                $(".result").html("Success.");
+                            }
+                        }
+                    }); //End: ajax
+                }//End: callRoutes
+
+                callRoutes("http://localhost:3002/user", function(data, status){
+                    console.log("data, status", data, status);
+                    $(".result").html("Ended.");
+                    $.each(data, function (name, value) {
+                       var p = "<li>{0} | {1} | <span id={2}>ver</span></li>".format(value.name, value.email, value.id);
+                       $(".users").append(p);
+                       $("#{0}".format(value.id)).on('click', function(event) {
+                           event.preventDefault();
+                           showTrack(value.uuid);
+                       });
+                    });
+                });
+
+            })($); //End: function
+        </script>
+
+    </body>
+</html>

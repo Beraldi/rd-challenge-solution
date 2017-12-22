@@ -1,7 +1,13 @@
+br/com/resultadosdigitais/challenge/repository/CookieRepository.class
+br/com/resultadosdigitais/challenge/service/CookieServiceBean.class
+br/com/resultadosdigitais/challenge/controller/CookieController.class
 br/com/resultadosdigitais/challenge/repository/UserRepository.class
-br/com/resultadosdigitais/challenge/controller/UserController.class
-br/com/resultadosdigitais/challenge/service/UserService.class
-br/com/resultadosdigitais/challenge/ChallengeApplication.class
-br/com/resultadosdigitais/challenge/service/UserServiceBean.class
 br/com/resultadosdigitais/challenge/controller/DefaultController.class
 br/com/resultadosdigitais/challenge/model/User.class
+br/com/resultadosdigitais/challenge/model/UserCookie.class
+br/com/resultadosdigitais/challenge/controller/UserController.class
+br/com/resultadosdigitais/challenge/service/UserService.class
+br/com/resultadosdigitais/challenge/service/CookieService.class
+br/com/resultadosdigitais/challenge/ChallengeApplication.class
+br/com/resultadosdigitais/challenge/service/UserServiceBean.class
+br/com/resultadosdigitais/challenge/model/Cookie.class

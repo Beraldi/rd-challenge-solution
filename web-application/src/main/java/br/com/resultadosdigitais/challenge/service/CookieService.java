@@ -15,7 +15,7 @@ public interface CookieService {
      * @param cookieId the cookie id
      * @return the collection
      */
-    Collection<Cookie> findByCookieId(long cookieId);
+    Collection<Cookie> findByCookieId(String cookieId);
 
     /**
      * Find all collection.
@@ -45,6 +45,6 @@ public interface CookieService {
      *
      * @param id the id
      */
-    void delete(long id);
+    void delete(String id);
 
 }

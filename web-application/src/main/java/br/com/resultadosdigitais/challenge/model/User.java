@@ -5,15 +5,16 @@ import com.google.common.base.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * The type User.
  */
 @Entity
+@Table(name = "users")
 public class User implements Serializable{
 
     @Id
@@ -29,12 +30,20 @@ public class User implements Serializable{
     private String email;
 
     @NotNull
-    private Integer phone;
+    private String phone;
 
     @NotNull
     private String message;
 
+    @NotNull
     private Date datetime;
+
+    /**
+     * Instantiates a new User.
+     */
+    public User(){
+        this.datetime = new Date();
+    }
 
     /**
      * Gets datetime.
@@ -51,7 +60,7 @@ public class User implements Serializable{
      * @param datetime New value of datetime.
      */
     public void setDatetime(Date datetime) {
-        this.datetime = new Date();
+        this.datetime = datetime;
     }
 
     /**
@@ -68,7 +77,7 @@ public class User implements Serializable{
      *
      * @return Value of phone.
      */
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -104,7 +113,7 @@ public class User implements Serializable{
      *
      * @param phone New value of phone.
      */
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

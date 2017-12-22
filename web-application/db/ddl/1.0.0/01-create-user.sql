@@ -1,4 +1,4 @@
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `uuid` binary(16) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
