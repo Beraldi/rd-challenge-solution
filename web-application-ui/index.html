@@ -18,6 +18,9 @@
 
             (function($) {
 
+                var __uri = https://rd-challenge-solution-app.herokuapp.com;
+                // var __uri = http://localhost:3002;
+
                 if (!String.prototype.format) {
                   String.prototype.format = function() {
                     var args = arguments;
@@ -31,7 +34,7 @@
                 }
 
                 var showTrack = function(uuid){
-                    callRoutes("http://localhost:3002/cookie/" + uuid, function(data, status){
+                    callRoutes(__uri + "/cookie/" + uuid, function(data, status){
                         console.log("data, status", data, status);
                         $(".result").html("Ended.");
                         $(".cookies").text("");
@@ -67,7 +70,7 @@
                     }); //End: ajax
                 }//End: callRoutes
 
-                callRoutes("http://localhost:3002/user", function(data, status){
+                callRoutes(__uri + "/user", function(data, status){
                     console.log("data, status", data, status);
                     $(".result").html("Ended.");
                     $.each(data, function (name, value) {

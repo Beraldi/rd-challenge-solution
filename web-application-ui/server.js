@@ -7,6 +7,6 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.listen(3004);
+app.listen(process.env.PORT || 3004);
 
 console.log("Running at Port 3004");

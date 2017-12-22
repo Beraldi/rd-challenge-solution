@@ -14,8 +14,8 @@
   var DA_SCRIPT_ID = "[%SID%]";
   var DA_SCRIPT_NAME = "[%SNAME%]";
   var DA_SOURCE = "[%SOURCE%]";
-  var DA_Endpoint = "http://127.0.0.1:3002";
-  // var DA_Endpoint = "https://rd-challenge-solution-app.herokuapp.com";
+  // var DA_Endpoint = "http://127.0.0.1:3002";
+  var DA_Endpoint = "https://rd-challenge-solution-app.herokuapp.com";
   var DA_Referer = window.location.href || document.referrer;
   var DA_uuidRegEx = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
 

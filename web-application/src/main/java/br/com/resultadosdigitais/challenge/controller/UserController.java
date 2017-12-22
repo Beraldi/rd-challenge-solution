@@ -3,8 +3,8 @@ package br.com.resultadosdigitais.challenge.controller;
 
 import br.com.resultadosdigitais.challenge.model.User;
 import br.com.resultadosdigitais.challenge.service.UserService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,7 +30,7 @@ public class UserController {
      *
      * @return the response entity
      */
-    @CrossOrigin(origins = "http://localhost:3004")
+    @CrossOrigin(origins = "https://rd-challenge-solution-ui.herokuapp.com")
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<User>> findAll() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class UserController {
      * @param user the user
      * @return the response entity
      */
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://rd-challenge-solution-site.herokuapp.com")
     @RequestMapping(value = "/form", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -3,8 +3,8 @@ package br.com.resultadosdigitais.challenge.controller;
 
 import br.com.resultadosdigitais.challenge.model.Cookie;
 import br.com.resultadosdigitais.challenge.service.CookieService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,7 +32,7 @@ public class CookieController {
      * @param url the url
      * @return the cookie
      */
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://rd-challenge-solution-site.herokuapp.com")
     @RequestMapping(value = "/track", method = RequestMethod.GET)
     public ResponseEntity<Cookie> setCookie(@RequestParam(value = "cid") final String cid, @RequestParam(value = "url")  final String url) {
 
