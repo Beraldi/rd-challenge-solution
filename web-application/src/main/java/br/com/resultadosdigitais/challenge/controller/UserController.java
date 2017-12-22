@@ -30,7 +30,7 @@ public class UserController {
      *
      * @return the response entity
      */
-    @CrossOrigin(origins = "https://rd-challenge-solution-ui.herokuapp.com")
+    @CrossOrigin(origins = "http://localhost:3004")
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<User>> findAll() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
@@ -53,7 +53,7 @@ public class UserController {
      * @param user the user
      * @return the response entity
      */
-    @CrossOrigin(origins = "https://rd-challenge-solution-site.herokuapp.com")
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/form", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

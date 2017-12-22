@@ -32,7 +32,7 @@ public class CookieController {
      * @param url the url
      * @return the cookie
      */
-    @CrossOrigin(origins = "https://rd-challenge-solution-site.herokuapp.com")
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/track", method = RequestMethod.GET)
     public ResponseEntity<Cookie> setCookie(@RequestParam(value = "cid") final String cid, @RequestParam(value = "url")  final String url) {
 
