@@ -1,3 +1,7 @@
+/home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/repository/UserRepository.java
+/home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/service/UserServiceBean.java
+/home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/controller/DefaultController.java
 /home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/ChallengeApplication.java
+/home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/service/UserService.java
 /home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/controller/UserController.java
 /home/beraldi/git-repositories/java/rd-challenge-solution/web-application/src/main/java/br/com/resultadosdigitais/challenge/model/User.java

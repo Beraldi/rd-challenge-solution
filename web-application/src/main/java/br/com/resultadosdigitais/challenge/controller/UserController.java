@@ -1,18 +1,19 @@
 package br.com.resultadosdigitais.challenge.controller;
 
 
+import br.com.resultadosdigitais.challenge.model.Cookie;
 import br.com.resultadosdigitais.challenge.model.User;
+import br.com.resultadosdigitais.challenge.service.UserService;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.Collection;
 import java.util.UUID;
 
 /**
@@ -24,48 +25,30 @@ public class UserController {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    private EmailValidator emailValidator = EmailValidator.getInstance();
+    @Autowired
+    private UserService userService;
 
-
-    /**
-     * Sets user with id.
-     *
-     * @param id    the id
-     * @param url   the url
-     * @param email the email
-     * @return the user with id
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<User> setUserWithId(@RequestParam(value = "cid") final UUID id, @RequestParam(value = "url")  final String url, @RequestParam(value = "email", required = false) final String email) {
-
-        final User user = new User(id, url, new Date(), emailValidator.isValid(email) ? email : "");
-
-        loggerInfo(user);
-
-        return new ResponseEntity<>(HttpStatus.OK);
+    @RequestMapping(value = "/allusers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<User>> findAll() {
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    /**
-     * Sets user.
-     *
-     * @param url   the url
-     * @param email the email
-     * @return the user
-     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<User>> findById(@PathVariable("id") long id) {
+        return new ResponseEntity<>(userService.findByUserId(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value = "/form", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> createUserByForm(@RequestBody User user) {
+        return new ResponseEntity<>(userService.create(user), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/track", method = RequestMethod.GET)
-    public ResponseEntity<UUID> setUser(@RequestParam(value = "url")  final String url, @RequestParam(value = "email", required = false) final String email) {
-
-        final User user = new User(url, new Date(), emailValidator.isValid(email) ? email : "");
-
-        loggerInfo(user);
-
-        return new ResponseEntity<>(user.getId(), HttpStatus.OK);
-    }
-
-    private void loggerInfo(User user) {
-        logger.info("user=[" + user.toString() + "]");
-
-        logger.info(String.format("id=[%s] url=[%s] date=[%s]", user.getId(), user.getUrl(), user.getDateTime()));
+    public ResponseEntity<Cookie> setCookie(@RequestParam(value = "cid") final String cid, @RequestParam(value = "url")  final String url) {
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

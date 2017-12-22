@@ -8,7 +8,7 @@ var path = require('path');
 
 var settings = {
     path: path.normalize(path.join(__dirname, '..')),
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 3001,
     contentType: "application/json",
     smtpConfig: {
         host: 'smtp.rd.com',

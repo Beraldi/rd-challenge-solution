@@ -19,15 +19,18 @@ $(function() {
       }
       $this = $("#sendMessageButton");
       $this.prop("disabled", true); // Disable submit button until AJAX call is complete to prevent duplicate messages
+      console.log(JSON.stringify({
+        uuid: Cookies.get('br.com.resultadosdigitais.challenge'),
+        name: name,
+        phone: phone,
+        email: email,
+        message: message
+      }));
       $.ajax({
-        url: "././mail/contact_me.php",
+        url: "http://localhost:3002/user/form",
         type: "POST",
-        data: {
-          name: name,
-          phone: phone,
-          email: email,
-          message: message
-        },
+        headers: {'Content-type': 'application/json'},
+        data: JSON.stringify({"id":null,"uuid":"00facece-c4b4-47b3-b87b-90a19666ae76","name":null,"email":"b@b.com","phone":123456,"message":"123456","url":"http://","datetime":null}),
         cache: false,
         success: function() {
           // Success message

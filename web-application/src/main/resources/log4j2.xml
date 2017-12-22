@@ -15,10 +15,10 @@
         <Appender type="File" name="File" fileName="${filename}">
             <Layout type="PatternLayout" pattern="${defaultpattern}" />
         </Appender>
-        <LogzioAppender name="Logzio">
-            <logzioToken>dwEELpLijRPvmvhwxmyCBBZYspioIkDW</logzioToken>
-            <logzioType>myAwesomeType</logzioType>
-        </LogzioAppender>
+        <!--<LogzioAppender name="Logzio">-->
+            <!--<logzioToken>dwEELpLijRPvmvhwxmyCBBZYspioIkDW</logzioToken>-->
+            <!--<logzioType>myAwesomeType</logzioType>-->
+        <!--</LogzioAppender>-->
     </Appenders>
 
     <Loggers>
@@ -30,9 +30,9 @@
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="File"/>
         </Root>
-        <Root level="info">
-            <AppenderRef ref="Logzio"/>
-        </Root>
+        <!--<Root level="info">-->
+            <!--<AppenderRef ref="Logzio"/>-->
+        <!--</Root>-->
     </Loggers>
 
 </Configuration>

@@ -14,7 +14,8 @@
   var DA_SCRIPT_ID = "[%SID%]";
   var DA_SCRIPT_NAME = "[%SNAME%]";
   var DA_SOURCE = "[%SOURCE%]";
-  var DA_Endpoint = "https://rd-challenge-solution-app.herokuapp.com";
+  var DA_Endpoint = "http://127.0.0.1:3002";
+  // var DA_Endpoint = "https://rd-challenge-solution-app.herokuapp.com";
   var DA_Referer = window.location.href || document.referrer;
   var DA_uuidRegEx = "[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}";
 
@@ -33,7 +34,7 @@
 
     this.sync = function(_cid, _url, _email) {
       console.log("_cid, _url, _email", _cid, _url, _email);
-      var _src = DA_Endpoint + "/user/?cid=" + _cid + "&url=" + escape(_url) + "&email=" + _email;
+      var _src = DA_Endpoint + "/user/?cid=" + _cid + "&url=" + escape(_url);
       _this.setPixelImg(_src);
     }
 
@@ -59,10 +60,10 @@
   var track = new f();
 
   window.onhashchange = function(event){
-    track.sync(DA_CLIENT_ID, window.location.hash ? window.location.hash : DA_Referer, "");
+    track.sync(DA_CLIENT_ID, window.location.hash ? window.location.hash : DA_Referer);
   };
 
-  track.sync(DA_CLIENT_ID, window.location.hash ? window.location.hash : DA_Referer, "");
+  track.sync(DA_CLIENT_ID, window.location.hash ? window.location.hash : DA_Referer);
 
   //cookieSync
   // f.setPixelImg("https://ib.adnxs.com/getuid?" + DA_Endpoint + "/pixel/sync?k=adnxs_uid&v=$UID&cId=" + DA_CLIENT_ID);

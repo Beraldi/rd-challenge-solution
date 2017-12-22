@@ -2,55 +2,56 @@ package br.com.resultadosdigitais.challenge.model;
 
 import com.google.common.base.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
 /**
  * The type User.
  */
-public class User {
+@Entity
+public class User implements Serializable{
 
-    private UUID id;
-    private String url;
-    private Date dateTime;
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String uuid;
+
+    @NotNull
+    private String name;
+
+    @NotNull
     private String email;
 
+    @NotNull
+    private Integer phone;
+
+    @NotNull
+    private String message;
+
+    private Date datetime;
+
     /**
-     * Instantiates a new User.
+     * Gets datetime.
      *
-     * @param id       the id
-     * @param url      the url
-     * @param dateTime the date time
-     * @param email    the email
+     * @return Value of datetime.
      */
-    public User(UUID id, String url, Date dateTime, String email) {
-        this.id = id;
-        this.url = url;
-        this.dateTime = dateTime;
-        this.email = email;
+    public Date getDatetime() {
+        return datetime;
     }
 
     /**
-     * Instantiates a new User.
+     * Sets new datetime.
      *
-     * @param url      the url
-     * @param dateTime the date time
-     * @param email    the email
+     * @param datetime New value of datetime.
      */
-    public User(String url, Date dateTime, String email) {
-        this.id = UUID.randomUUID();
-        this.url = url;
-        this.dateTime = dateTime;
-        this.email = email;
-    }
-
-    /**
-     * Gets id.
-     *
-     * @return Value of id.
-     */
-    public UUID getId() {
-        return id;
+    public void setDatetime(Date datetime) {
+        this.datetime = new Date();
     }
 
     /**
@@ -58,71 +59,120 @@ public class User {
      *
      * @param id New value of id.
      */
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Gets dateTime.
+     * Gets phone.
      *
-     * @return Value of dateTime.
+     * @return Value of phone.
      */
-    public Date getDateTime() {
-        return dateTime;
+    public Integer getPhone() {
+        return phone;
     }
 
     /**
-     * Sets new url.
+     * Sets new uuid.
      *
-     * @param url New value of url.
+     * @param uuid New value of uuid.
      */
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     /**
-     * Gets url.
+     * Sets new name.
      *
-     * @return Value of url.
+     * @param name New value of name.
      */
-    public String getUrl() {
-        return url;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * Sets new dateTime.
+     * Gets id.
      *
-     * @param dateTime New value of dateTime.
+     * @return Value of id.
      */
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets new phone.
+     *
+     * @param phone New value of phone.
+     */
+    public void setPhone(Integer phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * Sets new message.
+     *
+     * @param message New value of message.
+     */
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     /**
      * Gets email.
      *
-     * @return the email
+     * @return Value of email.
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * Sets email.
+     * Sets new email.
      *
-     * @param email the email
+     * @param email New value of email.
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Gets uuid.
+     *
+     * @return Value of uuid.
+     */
+    public String getUuid() {
+        return uuid;
+    }
+
+
+    /**
+     * Gets message.
+     *
+     * @return Value of message.
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * Gets name.
+     *
+     * @return Value of name.
+     */
+    public String getName() {
+        return name;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", url='" + url + '\'' +
-                ", dateTime=" + dateTime +
+                ", uuid='" + uuid + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", phone=" + phone +
+                ", message='" + message + '\'' +
+                ", datetime=" + datetime +
                 '}';
     }
 
@@ -132,13 +182,16 @@ public class User {
         if (!(o instanceof User)) return false;
         User user = (User) o;
         return Objects.equal(getId(), user.getId()) &&
-                Objects.equal(getUrl(), user.getUrl()) &&
-                Objects.equal(getDateTime(), user.getDateTime()) &&
-                Objects.equal(getEmail(), user.getEmail());
+                Objects.equal(getUuid(), user.getUuid()) &&
+                Objects.equal(getName(), user.getName()) &&
+                Objects.equal(getEmail(), user.getEmail()) &&
+                Objects.equal(getPhone(), user.getPhone()) &&
+                Objects.equal(getMessage(), user.getMessage()) &&
+                Objects.equal(getDatetime(), user.getDatetime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getUrl(), getDateTime(), getEmail());
+        return Objects.hashCode(getId(), getUuid(), getName(), getEmail(), getPhone(), getMessage(), getDatetime());
     }
 }
